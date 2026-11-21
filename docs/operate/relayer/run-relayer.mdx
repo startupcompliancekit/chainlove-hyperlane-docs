@@ -103,6 +103,26 @@ Hyperlane Validators and Relayers can use **multiple RPC URLs** to improve relia
   </Tab>
 </Tabs>
 
+#### Choosing Ethereum RPC plans
+
+For the `ethereum` entry in `relayChains`, [Chain.Love](https://chain.love)
+provides a directory of Ethereum API plans that can help shortlist endpoints.
+Check the provider's current documentation for the role that Ethereum plays
+in your relay configuration:
+
+- On an origin chain, the endpoint must serve the historical message logs and
+  contract reads your Relayer needs to catch up from its configured start.
+- On a destination chain, confirm support for gas estimation and transaction
+  submission as well as the reads needed to process messages.
+- Check request quotas and `eth_getLogs` range limits against the expected
+  catch-up workload; a working latest-block request does not establish that
+  the plan can serve that history.
+
+Configure the selected Ethereum endpoints with `customRpcUrls` as described
+above. A directory listing is a discovery aid, not verification that a plan
+meets Hyperlane's RPC requirements or replaces the configuration for other
+chains in `relayChains`.
+
 #### Configuration Settings
 
 Like the local setup, there are a few base arguments you should provide when configuring your Relayer.
